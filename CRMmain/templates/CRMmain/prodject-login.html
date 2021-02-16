@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+        {% load static %}
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Max Makeev">
+    
+
+    <title> Войти </title>
+  
+
+	<style>
+		body {
+		 background: #c7b39b url({% static "CRMmain/assets/logfon.jpg" %}); 
+
+		}
+	</style>
+		<!-- Favicon href="{% static "CRMmain/pmo.png" %}" -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static "CRMmain/assets/img/favicon.png" %}">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static "CRMmain/assets/css/bootstrap.min.css" %}" >
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="{% static "CRMmain/assets/css/font-awesome.min.css" %}" >
+
+        <!--font style-->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" %}"  rel="stylesheet">
+		
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="{% static "CRMmain/assets/css/line-awesome.min.css" %}" >
+
+        <!-- Select2 CSS -->
+		<link rel="stylesheet" href="{% static "CRMmain/assets/css/select2.min.css" %}" >
+
+        <!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="{% static "CRMmain/assets/css/bootstrap-datetimepicker.min.css" %}" >
+
+        <!-- Datatable CSS -->
+		<link rel="stylesheet" href="{% static "CRMmain/assets/css/dataTables.bootstrap4.min.css" %}" >
+
+		<!-- Theme CSS -->
+        <link rel="stylesheet" href="{% static "CRMmain/assets/css/theme-settings.css"  %}" >
+
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="{% static "CRMmain/assets/css/style.css" %}" >
+
+      
+
+</head>
+<body class="hold-transition bg-light">
+	
+	<div class="container h-p100">
+		<div class="row align-items-center justify-content-md-center h-p100">
+			<br style="margin-top: 20%; ">
+			<div class="col-lg-5 col-md-8 col-12" style="margin-top: 16%; " >
+                <div class="content-top-agile ">
+                    
+                    <img class="justify-content-mb-center"  src="{% static "CRMmain/assets/avisma.png" %}" alt="" width="100%" height="130" style="text-align: center;"> 
+                  
+                   
+                </div>
+				<div class="p-40  content-bottom">
+					<form action="" method="post">
+                            {% csrf_token %}  
+        
+						<div class="form-group">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text bg-info border-info"><i class="ti-user"></i></span>
+								</div>
+								<input type="text" name = 'username'  class="form-control" placeholder="Логин">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text bg-info border-info"><i class="ti-lock"></i></span>
+								</div>
+								<input type="password" name = 'password'  class="form-control" placeholder="Пароль">
+							</div>
+						</div>
+						  <div class="row">
+							<div class="col-6">
+							  <button type="submit" class="btn btn-info mt-10">Войти</button>
+							</div>
+							<!-- /.col -->
+							<div class="col-6">
+							 <div class="fog-pwd text-right">
+								<a href="mailto:makeev.m@galaktika.ru"><i class="ion ion-locked"></i> Поддержка</a><br>
+							  </div>
+							</div>
+							<!-- /.col -->
+							
+							<!-- /.col -->
+						  </div>
+					</form>	
+					
+				</div>
+			
+			</div>
+			
+			
+		</div>
+	</div>
+
+	<script src="{% static "CRMmain/assets/js/jquery-3.5.0.min.js" %}"></script>
+		
+	<!-- Bootstrap Core JS -->
+	<script src="{% static "CRMmain/assets/js/popper.min.js" %}"></script>
+	<script src="{% static "CRMmain/assets/js/bootstrap.min.js" %}"></script>
+	
+	<!-- popper 
+	<script src="{% static "CRMmain/assets/vendor_components/popper/dist/popper.min.js"%}"></script>
+	-->
+	<!-- Bootstrap 4.1
+	<script src="{% static "CRMmain/assets/vendor_components/bootstrap/dist/js/bootstrap.min.js"%}"></script>
+-->
+</body>
+</html>

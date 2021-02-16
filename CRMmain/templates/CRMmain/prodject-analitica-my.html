@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+
+<!-- титул  -->
+{% block page_title %}
+<title> Отчет по Проекту </title>
+{% endblock %}
+
+
+{% load static %}
+
+<!-- Стили -->
+{% block page_styles %}
+
+
+{% endblock %}
+
+<!-- Слайдер -->
+{% block page_slader %}
+
+
+{% endblock %}
+
+{% block page_contecst %}
+
+ <div class="col-12">
+        <div class="box">
+          <div class="box-header">
+            <h4 class="box-title"> Продажа </h4>
+          </div>
+          <div class="box-body">
+            <div class="table-responsive">
+              <table id="example5" class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                <tr>
+                  <th>№</th>
+                  <th>Проект</th>
+                  <th> РП</th>
+                  <th >Статус </th>
+                  <th>Продукт </th>
+                  <th>Сумма </th>
+                  <th>Контрактация </th>
+                </tr>
+                </thead>
+                <tbody> 
+              
+                  <tr>
+                    <th>№</th>
+                    <th > <a href="{% url 'CRMmain:prod' %}" >Бла бла  </a> </th>
+                    <th > РП</th>
+                    <th ><div class="progress">
+                      <div class="progress-bar progress-bar-primary progress-bar-animated" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                    </div>
+                      
+                      
+                    </div> </th>
+                    <th>
+                      
+                    </th>
+                    <th>Сумма </th>
+                    <th>Контрактация </th>
+                  </tr>
+                
+                
+              </tbody>
+              </table>
+            </div>
+  
+  
+  
+            </div>
+        </div>
+     </div>
+
+
+
+{% endblock %}
+
+
+
+{% block page_staticjsandcss %}
+<script src="{% static "CRMmain/assets/vendor_components/datatable/datatables.min.js"%}"></script>
+<script src="{% static "CRMmain/assets/vendor_components/datatable/datatables.min.js"%}"></script>
+<script src="{% static "CRMmain/js/pages/data-table.js"%}"></script>
+<script src="{% static "CRMmain/js/pages/project-table.js"%}"></script>
+{% endblock %}

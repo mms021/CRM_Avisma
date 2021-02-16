@@ -1,0 +1,534 @@
+{% extends 'index.html' %}
+
+<!-- титул  -->
+{% block page_title %}
+<title> Отчет по Проекту </title>
+{% endblock %}
+
+
+{% load static %}
+{% load zadatha %}
+{% load mainfilt %}
+<!-- Стили -->
+{% block page_styles %}
+
+
+{% endblock %}
+
+<!-- Слайдер -->
+{% block page_slader %}
+
+
+{% endblock %}
+
+{% block page_contecst %}
+
+
+     <div class="crms-title row bg-white">
+      <div class="col ">
+        <h3 class="page-title m-0">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+          <i class="fa fa-address-book-o" aria-hidden="true"></i>
+        </span> Запрос </h3>
+      </div>
+      <div class="col text-right">
+        <ul class="breadcrumb bg-white float-right m-0 pl-0 pr-0">
+          <!-- 
+  <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+  <li class="breadcrumb-item active">Contacts</li>
+  -->
+</ul>
+      </div>
+    </div>
+
+<!-- Page Header -->
+<div class="page-header pt-3 mb-0 ">
+<div class="row">
+<div class="col">
+  <div class="dropdown">
+    <a class="dropdown-toggle recently-viewed" href="#" role="button" data-toggle="dropdown" aria-expanded="false"> Фильтровать</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Фильтровать </a>
+                  <a class="dropdown-item" href="#">По дате добавления</a>
+                  <a class="dropdown-item" href="#">Все запросы</a>
+                  <a class="dropdown-item" href="#">По важности</a>
+                 
+    </div>
+  </div>
+</div>
+<div class="col text-right">
+  <ul class="list-inline-item pl-0">
+            <li class="nav-item dropdown list-inline-item add-lists">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                    <div class="nav-profile-text">
+                      <i class="fa fa-th" aria-hidden="true"></i>
+                    </div>
+                </a>
+                <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#add-new-list">Add New List View</a>
+                </div>
+            </li>
+            <li class="list-inline-item">
+              <a href="{% url 'CRMmain:create' %}"class="add btn btn-gradient-primary font-weight-bold text-white todo-list-add-btn btn-rounded"> Добавить </a>
+              <!--<button class="add btn btn-gradient-primary font-weight-bold text-white todo-list-add-btn btn-rounded" id="add-task" data-toggle="modal" data-target="#add_contact">New Contact</button>
+           -->    </li>
+        </ul>
+</div>
+</div>
+</div>
+<!-- /Page Header -->
+
+<!-- Content Starts -->
+<div class="row m-0" >
+  <div class="col-md-12 grid-margin stretch-card kanban">
+    <div class="">
+      <div class="card-body p-0 row">
+         <div id="sortableKanbanBoards" class="col-md-12 kanban-views p-0">
+            <div class="panel panel-primary kanban-col m-0">
+                <div class="panel-heading bg-transparent p-0">
+                    <h4>Проверка запроса ({{'1 2 3'|contitaps }})</h4>
+                    <!-- <i class="fa fa-2x fa-plus-circle pull-right"></i> -->
+                </div>
+                <div class="panel-body slimScrollDiv" style='display: none;' >
+                    <div id="TODO" class="kanban-centered">
+                      {% for i in '1 2 3'|contitapslid %}
+                      <article class="kanban-entry grab" id="item6" draggable="true">
+                          <div class="kanban-entry-inner">
+                              <div class="kanban-label card bg-gradient-info  card-img-holder text-white h-100" data-toggle="modal" data-target="#leads-details">
+                                 <a href="{% url 'CRMmain:prod' pk=i.id %}" >  <h2 class="" data-toggle="modal" data-target="#leads">{{ i.title }}</h2></a>
+                                  
+                                    </li>
+                                  <ul class="list-unstyled">
+                                    <li> {{ i.kompani.title  }} </li>
+                                    <li>{{  i.get_status_display }}</li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </article>
+                    {% endfor %}
+
+                    </div>
+                </div>
+              
+            </div>
+            <div class="panel panel-primary kanban-col mr-0">
+                <div class="panel-heading bg-transparent p-0">
+                    <h4>Оценка ({{ '4 5'|contitaps}})</h4>
+                    <!-- <i class="fa fa-2x fa-plus-circle pull-right"></i> -->
+                </div>
+                <div class="panel-body slimScrollDiv" style='display: none;'>
+                    <div id="DOING" class="kanban-centered">
+
+                      {% for i in '4 5'|contitapslid %}
+                        <article class="kanban-entry grab" id="item6" draggable="true">
+                            <div class="kanban-entry-inner">
+                                <div class="kanban-label card bg-gradient-danger card-img-holder text-white h-100" data-toggle="modal" data-target="#leads-details">
+                                   <a href="{% url 'CRMmain:prod' pk=i.id %}" >  <h2 class="" data-toggle="modal" data-target="#leads">{{ i.title }}</h2></a>
+                                    
+                                      </li>
+                                    <ul class="list-unstyled">
+                                      <li> {{ i.kompani.title  }} </li>
+                                      <li>{{  i.get_status_display }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                      {% endfor %}
+                    </div>
+                </div>
+              
+            </div>
+          
+            <div class="panel panel-primary kanban-col mr-0">
+                <div class="panel-heading bg-transparent p-0">
+                    <h4>Проверка КП ({{ '6 7 8'|contitaps}})</h4>
+                    <!-- <i class="fa fa-2x fa-plus-circle pull-right"></i> -->
+                </div>
+                <div class="panel-body slimScrollDiv" style='display: none;'>
+                    <div id="DONE" class="kanban-centered">
+                      {% for i in '6 7 8'|contitapslid %}
+                      <article class="kanban-entry grab" id="item6" draggable="true">
+                          <div class="kanban-entry-inner">
+                              <div class="kanban-label card bg-gradient-success card-img-holder text-white h-100" data-toggle="modal" data-target="#leads-details">
+                                 <a href="{% url 'CRMmain:prod' pk=i.id %}" >  <h2 class="" data-toggle="modal" data-target="#leads">{{ i.title }}</h2></a>
+                                  
+                                    </li>
+                                  <ul class="list-unstyled">
+                                    <li> {{ i.kompani.title  }} </li>
+                                    <li>{{  i.get_status_display }}</li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </article>
+                    {% endfor %}
+                    </div>
+                </div>
+              
+            </div>
+
+             <div class="panel panel-primary kanban-col mr-0">
+                <div class="panel-heading bg-secondary bg-transparent p-0">
+                    <h4 class="closed">Создать заказ ({{ '9 10'|contitaps}})</h4>
+                    <!-- <i class="fa fa-2x fa-plus-circle pull-right"></i> -->
+                </div>
+                <div class="panel-body slimScrollDiv" style='display: none;'>
+                    <div id="closed" class="kanban-centered">
+                      {% for i in '9 10'|contitapslid %}
+                      <article class="kanban-entry grab" id="item6" draggable="true">
+                          <div class="kanban-entry-inner">
+                              <div class="kanban-label card bg-gradient-warning card-img-holder text-white h-100" data-toggle="modal" data-target="#leads-details">
+                                 <a href="{% url 'CRMmain:prod' pk=i.id %}" >  <h2 class="" data-toggle="modal" data-target="#leads">{{ i.title }}</h2></a>
+                                  
+                                    </li>
+                                  <ul class="list-unstyled">
+                                    <li> {{ i.kompani.title  }} </li>
+                                    <li>{{  i.get_status_display }}</li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </article>
+                    {% endfor %}
+                    </div>
+                </div>
+              
+            </div>
+     
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="card mb-0">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped table-nowrap custom-table mb-0 datatable">
+        <thead>
+          <tr>
+            <th class="checkBox">
+              <label class="container-checkbox">
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+              </label>
+            </th>
+            <th>№</th>
+            <th>Название</th>
+            <th>Прогресс</th>
+            
+            <th>Компания</th>
+            <th>Статус </th>
+            
+            <th class="text-right">Actions</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in lid %}
+          <tr>
+            <td class="checkBox">
+              <label class="container-checkbox">
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+              </label>
+            </td>
+
+            <td>{{ forloop.counter }} </td>
+            <td>
+              <a href="{% url 'CRMmain:prod' pk=i.id %}" > {{ i.title }}  </a> 
+            </td>
+            <td>
+              <div class="pipeline-small flat pipeline-project">
+                {% if i.status != 'ZVR' %}
+                <a class="won noselect tipped-top {% if i.prov_na_nom  >  3 %} greeb  {% else %} {% if i.id|checcount > 0 %} read {% endif %} {% endif %}  " data-toggle="tooltip" data-placement="top" title="" data-original-title="Проверка запроса">&nbsp;
+                  <span class="stretched-link" data-toggle="modal" data-target="#project-details"></span>
+                </a>
+                <a class="won noselect tipped-top {% if i.prov_na_nom  > 5 %} greeb {% elif i.prov_na_nom  < 4 %} planing {% else %} {% if i.id|checcount > 0 %} read {% endif %} {% endif %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Оценка">
+                  <span class="stretched-link" data-toggle="modal" data-target="#project-details"></span>
+                </a>
+                
+                <a class="won noselect tipped-top {% if i.prov_na_nom  > 8 %} greeb {% elif i.prov_na_nom  < 6 %} planing {% else %} {% if i.id|checcount > 0 %} read {% endif %} {% endif %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Проверка КП ">
+                  <span class="stretched-link" data-toggle="modal" data-target="#project-details"></span>
+                </a>
+                <a class="won noselect tipped-top {% if i.prov_na_nom  < 9 %} planing {% else %} {% if i.id|checcount > 0 %} read {% endif %} {% endif %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Заказ">
+                  <span class="stretched-link" data-toggle="modal" data-target="#project-details"></span>
+                </a>
+
+                {% else %}
+                <a class="won noselect tipped-top  greeb" data-toggle="tooltip" data-placement="top" title="" data-original-title="Проверка запроса">&nbsp;
+                  <span class="stretched-link" data-toggle="modal" data-target="#project-details"></span>
+                </a>
+                <a class="won noselect tipped-top greeb" data-toggle="tooltip" data-placement="top" title="" data-original-title="Оценка">
+                  <span class="stretched-link" data-toggle="modal" data-target="#project-details"></span>
+                </a>
+                
+                <a class="won noselect tipped-top greeb" data-toggle="tooltip" data-placement="top" title="" data-original-title="Проверка КП">
+                  <span class="stretched-link" data-toggle="modal" data-target="#project-details"></span>
+                </a>
+                <a class="won noselect tipped-top greeb" data-toggle="tooltip" data-placement="top" title="" data-original-title="Заказ">
+                  <span class="stretched-link" data-toggle="modal" data-target="#project-details"></span>
+                </a>
+
+                {% endif %}
+              </div>
+            </td>
+          
+            <td>{{ i.kompani.title }}	</td>
+            <td> {{  i.get_status_display }} </td>
+                         
+            <td class="text-center">
+              <div class="dropdown dropdown-action">
+                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="#">Edit This Contact</a>
+                                  <a class="dropdown-item" href="#">Change Contact Image</a>
+                                  <a class="dropdown-item" href="#">Delete This Contact</a>
+                                  <a class="dropdown-item" href="#">Clone This Contact</a>
+                                  <a class="dropdown-item" href="#">Change Record Owner</a>
+                                  <a class="dropdown-item" href="#">Generate Merge Document</a>
+                                  <a class="dropdown-item" href="#">Change Contact To Lead</a>
+                                  <a class="dropdown-item" href="#">Print This Contact</a>
+                                  <a class="dropdown-item" href="#">Email This Contact</a>
+                                  <a class="dropdown-item" href="#">Add New Task For Contact</a>
+                                  <a class="dropdown-item" href="#">Add New Event For Contact</a>
+                                  <a class="dropdown-item" href="#">Add Activity Set To Contact</a>
+                                  <a class="dropdown-item" href="#">Add New Deal For Contact</a>
+                                  <a class="dropdown-item" href="#">Add New Project For Contact</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>		
+</div>
+</div> 
+
+
+
+
+{% endblock %}
+
+{% block page_contecst_dop %}
+
+<div class="modal fade" id="add_contact" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog" role="document">
+    <button type="button" class="close md-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div class="modal-content">
+
+      <div class="modal-header">
+                  <h4 class="modal-title text-center">Add Contact</h4>
+                  <button type="button" class="close xs-close" data-dismiss="modal">×</button>
+                </div>
+
+      <div class="modal-body">
+        <div class="row">
+              <div class="col-md-12">
+                  <form>
+                    <h4>Name & Occupation</h4>
+                    <div class="form-group row">
+                              <div class="col-md-12"><label class="col-form-label">Name <span class="text-danger">*</span></label></div>
+                              <div class="col-md-4">
+                                  <input class="form-control" type="text" placeholder="Prefix" name="prefix">
+                              </div>
+                              <div class="col-md-4">
+                                  <input class="form-control" type="text" placeholder="First name" name="prefix-name">
+                              </div>
+                              <div class="col-md-4">
+                                  <input class="form-control" type="text" placeholder="Last name" name="last-name">
+                              </div>
+                          </div>
+                      <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Organization</label>
+                                <select class="form-control">
+                                    <option>Select</option>
+                                </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-form-label">Title</label>
+                                <input type="text" class="form-control"  name="title" placeholder="Title">
+                </div>
+              </div>
+              <h4>Contact Details</h4>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Email</label>
+                                <input type="text" class="form-control"  name="email" placeholder="Email">
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-form-label">Email Opted out</label>
+                                <div >
+                                <label class="container-checkbox">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                  </label>
+                                </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Phone</label>
+                                <input type="text" class="form-control" name="phone" placeholder="Phone">
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-form-label">Home Phone</label>
+                                <input type="text" class="form-control"  name="h-phone" placeholder="Phone">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Mobile Phone</label>
+                                <input type="text" class="form-control" name="m-phone" placeholder="Phone">
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-form-label">Other Phone</label>
+                                <input type="text" class="form-control" id="o-phone" name="o-phone" placeholder="Phone">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Assistant Phone</label>
+                                <input type="text" class="form-control" name="assistant-phone" placeholder="Phone">
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-form-label">Assistant Name</label>
+                                <input type="text" class="form-control"  name="assistant-name" placeholder="Assistant Name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Fax</label>
+                                <input type="text" class="form-control" name="fax" placeholder="Fax">
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-form-label">Linkedin</label>
+                                <input type="text" class="form-control"  name="linkedin" placeholder="linkedin">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Facebook</label>
+                                <input type="text" class="form-control"  name="fb" placeholder="Facebook">
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-form-label">Twitter</label>
+                                <input type="text" class="form-control"  name="twitter" placeholder="Twitter">
+                </div>
+              </div>
+              <h4>Address Information</h4>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Mailing Address</label>
+                                <textarea class="form-control" rows="3" name="mailing-address" placeholder="Address"></textarea>
+                </div>
+                <div class="col-sm-6 mt-3">
+                  <label class="col-form-label"></label><br>
+                                <input type="text" class="form-control" placeholder="Mailing City" name="mailing-city">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" placeholder="Mailing State" name="mailing-state">
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" placeholder="Mailing Postal code" name="mailing-postal-code">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Mailing Country</label>
+                                <select class="form-control">
+                                    <option>India</option>
+                                    <option>US</option>
+                                    <option>Japan</option>
+                                </select>
+                </div>
+                <div class="col-sm-6 mt-3">
+                  <label class="col-form-label">Other Address</label>
+                                <textarea class="form-control" rows="3" name="other-address" placeholder="Address"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" placeholder="Other City" name="other-city">
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" placeholder="Other State" name="other-state">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <input type="text" class="form-control"  placeholder="Other Postal code" name="other-postal-code">
+                </div>
+                <div class="col-sm-6">
+                  <select class="form-control">
+                                    <option>India</option>
+                                    <option>US</option>
+                                    <option>Japan</option>
+                                </select>
+                </div>
+              </div>
+              <h4>Dates To Remember</h4>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Due Date <span class="text-danger">*</span></label>
+                                  <div class="cal-icon"><input class="form-control datetimepicker" type="text" placeholder="MM/DD/YY"></div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-form-label">Date of Birth <span class="text-danger">*</span></label>
+                                  <div class="cal-icon"><input class="form-control datetimepicker" type="text" placeholder="MM/DD/YY"></div>
+                </div>
+              </div>
+              
+              <h4>Description Information</h4>
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <label class="col-form-label">Description </label>
+                                <textarea class="form-control" rows="3" id="description" placeholder="Description"></textarea>
+                </div>
+              </div>
+              <h4>Tag Information</h4>
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <label class="col-form-label">Tag List</label>
+                                <input type="text" class="form-control" name="tag-name" placeholder="Tag List">
+                </div>
+              </div>
+              <h4>Permissions</h4>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Permission</label>
+                              <select class="form-control">
+                                    <option>Task Visibility</option>
+                                    <option>Private Task</option>
+                               </select>
+                </div>
+                
+              </div>
+                      <div class="text-center py-3">
+                        <button type="button" class="border-0 btn btn-primary btn-gradient-primary btn-rounded">Save</button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-secondary btn-rounded">Cancel</button>
+                      </div>
+                  </form>
+              </div>
+        </div>
+
+      </div>
+
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
+
+
+{% endblock %}
+
+{% block page_staticjsandcss %}
+
+{% endblock %}

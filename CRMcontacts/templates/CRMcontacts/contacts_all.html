@@ -1,0 +1,186 @@
+{% extends 'index.html' %}
+
+<!-- титул  -->
+{% block page_title %}
+<title> Контакты </title>
+{% endblock %}
+
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!-- Стили -->
+{% block page_styles %}
+
+
+{% endblock %}
+
+<!-- Слайдер -->
+{% block page_slader %}
+
+
+{% endblock %}
+
+{% block page_contecst %}
+
+
+     <div class="crms-title row bg-white">
+      <div class="col ">
+        <h3 class="page-title m-0">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+          <i class="fa fa-address-book-o" aria-hidden="true"></i>
+        </span> Контакты </h3>
+      </div>
+      <div class="col text-right" hidden>
+        <ul class="breadcrumb bg-white float-right m-0 pl-0 pr-0">
+          <!-- 
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+       <li class="breadcrumb-item active">Contacts</li>
+       -->
+    </ul>
+      </div>
+    </div>
+
+<!-- Page Header -->
+<div class="page-header pt-3 mb-0 ">
+<div class="row">
+<div class="col">
+  <div class="dropdown">
+    <a class="dropdown-toggle recently-viewed" href="#" role="button" data-toggle="dropdown" aria-expanded="false"> Фильтровать</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Фильтровать</a>
+                  <a class="dropdown-item" href="#">Items I'm following</a>
+                  <a class="dropdown-item" href="#">All Contacts</a>
+                   <a class="dropdown-item" href="#">Contacts added in the last 24 hours</a>
+                  <a class="dropdown-item" href="#">Contacts added in the last 7 days</a>
+                  <a class="dropdown-item" href="#">Contacts with no notes in the last month</a>
+                  <a class="dropdown-item" href="#">Contacts with no notes in the last 7 days</a>
+    </div>
+  </div>
+</div>
+<div class="col text-right">
+  <ul class="list-inline-item pl-0">
+            <li class="nav-item dropdown list-inline-item add-lists">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                    <div class="nav-profile-text">
+                      <i class="fa fa-th" aria-hidden="true"></i>
+                    </div>
+                </a>
+                <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#add-new-list">Add New List View</a>
+                </div>
+            </li>
+            <li class="list-inline-item">
+              <button class="add btn btn-gradient-primary font-weight-bold text-white todo-list-add-btn btn-rounded" id="add-task" data-toggle="modal" data-target="#add_contact">Добавить контакт</button>
+          </li>
+        </ul>
+</div>
+</div>
+</div>
+<!-- /Page Header -->
+
+<!-- Content Starts -->
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="card mb-0">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped table-nowrap custom-table mb-0 datatable">
+        <thead>
+          <tr>
+            <th>ФИО</th>
+            <th>Контрагент </th>
+            <th>Должность  </th>
+            <th>Мобильный телефон </th>
+            <th>Email </th>
+            <th> Ответственный </th>
+        </tr>
+        </thead>
+        <tbody>
+          {% for i in cont %}
+                  <tr>
+                    
+                    <th > <a href="{% url 'CRMcontacts:contacts' pk=i.id %}" >  {{ i.title}}  </a> </th>
+                    <th>  
+                      {% if i.compani %}
+                            <a href="{% url 'CRMcontacts:kompani' pk=i.compani.id %}" >  {{i.compani.title }}  </a> 
+                      {% endif %}
+                    </th>
+                    <th> {{ i.doljnost }}</th>
+                    <th>  <a href="tel:{{ i.tel_nomber }} ">{{ i.tel_nomber }} </a></th>
+                    <th> <a href="mailto:{{ i.email }}">{{ i.email }}</a>  </th>
+                    <th></th>
+                  </tr>
+           {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>		
+</div>
+</div> 
+
+
+{% endblock %}
+
+
+
+{% block page_contecst_dop %}
+
+
+<div class="col-lg-6 col-12">
+  <div class="modal " id ='add_contact' role="dialog" aria-modal="true" >
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id=""> Добавить контакт  </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <form action="" method="post">
+        {% csrf_token %} 
+      <div class="modal-body">
+        <div class="modal-group">
+          <input type="hidden" name="tupe" value="old">
+          
+          <div class="row">
+
+            <div class="col-6">
+            {{ form.title|as_crispy_field }}  
+            {{ form.doljnost|as_crispy_field }}  
+            </div>
+            <div class="col-6">
+                {{ form.tel_nomber|as_crispy_field }}  
+                {{ form.email|as_crispy_field }}  
+            </div>
+            <div class="col-12">
+              {{ form.compani|as_crispy_field }}   
+            </div>
+            </div>
+           </div> 
+      </div>
+      <div class="modal-footer">
+        <input type="submit" value="Сохранить " class="btn btn-success">
+        <div class="pull-right">
+          <button type="reset" class="btn btn-danger" class="close" data-dismiss="modal"><i class="fa fa-times"></i> Закрыть </button>
+         
+              </div>
+            
+      </div>
+    </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+  </div>
+</div>
+
+
+{% endblock %} 
+
+
+{% block page_staticjsandcss %}
+
+
+{% endblock %}

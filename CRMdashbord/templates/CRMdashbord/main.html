@@ -1,0 +1,438 @@
+
+
+{% extends 'index.html' %}
+
+<!-- титул  -->
+{% block page_title %}
+<title> Dashboard Запросы</title>
+{% endblock %}
+
+
+{% load static %}
+{% load mainfilt %}
+
+<!-- Стили -->
+{% block page_styles %}
+
+
+{% endblock %}
+
+<!-- Слайдер -->
+{% block page_slader %}
+
+
+{% endblock %}
+
+{% block page_contecst %}
+
+
+
+
+        <!-- Page Header -->
+      
+
+
+
+        <div class="crms-title row bg-white mb-4">
+            <div class="col">
+                <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                  <i class="la la-table"></i>
+                </span> <span> Dashboard Запросы</span></h3>
+            </div>
+           
+        </div>
+        
+        <div class="row m-0" >
+          <div class="col-md-12 grid-margin stretch-card kanban">
+            <div class="">
+              <div class="card-body p-0 row">
+                 <div id="sortableKanbanBoards" class="col-md-12 kanban-views p-0">
+                    <div class="panel panel-primary kanban-col m-0">
+                        <div class="panel-heading bg-transparent p-0">
+                            <h4>Проверка запроса ({{'1 2 3'|contitaps }})</h4>
+                            <!-- <i class="fa fa-2x fa-plus-circle pull-right"></i> -->
+                        </div>
+                        <div class="panel-body slimScrollDiv" style='display: none;' >
+                            <div id="TODO" class="kanban-centered">
+                              {% for i in '1 2 3'|contitapslid %}
+                              <article class="kanban-entry grab" id="item6" draggable="true">
+                                  <div class="kanban-entry-inner">
+                                      <div class="kanban-label card bg-gradient-info  card-img-holder text-white h-100" data-toggle="modal" data-target="#leads-details">
+                                         <a href="{% url 'CRMmain:prod' pk=i.id %}" >  <h2 class="" data-toggle="modal" data-target="#leads">{{ i.title }}</h2></a>
+                                          
+                                            </li>
+                                          <ul class="list-unstyled">
+                                            <li> {{ i.kompani.title  }} </li>
+                                            <li>{{  i.get_status_display }}</li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </article>
+                            {% endfor %}
+
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="panel panel-primary kanban-col mr-0">
+                        <div class="panel-heading bg-transparent p-0">
+                            <h4>Оценка ({{ '4 5'|contitaps}})</h4>
+                            <!-- <i class="fa fa-2x fa-plus-circle pull-right"></i> -->
+                        </div>
+                        <div class="panel-body slimScrollDiv" style='display: none;'>
+                            <div id="DOING" class="kanban-centered">
+
+                              {% for i in '4 5'|contitapslid %}
+                                <article class="kanban-entry grab" id="item6" draggable="true">
+                                    <div class="kanban-entry-inner">
+                                        <div class="kanban-label card bg-gradient-danger card-img-holder text-white h-100" data-toggle="modal" data-target="#leads-details">
+                                           <a href="{% url 'CRMmain:prod' pk=i.id %}" >  <h2 class="" data-toggle="modal" data-target="#leads">{{ i.title }}</h2></a>
+                                            
+                                              </li>
+                                            <ul class="list-unstyled">
+                                              <li> {{ i.kompani.title  }} </li>
+                                              <li>{{  i.get_status_display }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </article>
+                              {% endfor %}
+                            </div>
+                        </div>
+                      
+                    </div>
+                  
+                    <div class="panel panel-primary kanban-col mr-0">
+                        <div class="panel-heading bg-transparent p-0">
+                            <h4>Проверка КП ({{ '6 7 8'|contitaps}})</h4>
+                            <!-- <i class="fa fa-2x fa-plus-circle pull-right"></i> -->
+                        </div>
+                        <div class="panel-body slimScrollDiv" style='display: none;'>
+                            <div id="DONE" class="kanban-centered">
+                              {% for i in '6 7 8'|contitapslid %}
+                              <article class="kanban-entry grab" id="item6" draggable="true">
+                                  <div class="kanban-entry-inner">
+                                      <div class="kanban-label card bg-gradient-success card-img-holder text-white h-100" data-toggle="modal" data-target="#leads-details">
+                                         <a href="{% url 'CRMmain:prod' pk=i.id %}" >  <h2 class="" data-toggle="modal" data-target="#leads">{{ i.title }}</h2></a>
+                                          
+                                            </li>
+                                          <ul class="list-unstyled">
+                                            <li> {{ i.kompani.title  }} </li>
+                                            <li>{{  i.get_status_display }}</li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </article>
+                            {% endfor %}
+                            </div>
+                        </div>
+                      
+                    </div>
+
+                     <div class="panel panel-primary kanban-col mr-0">
+                        <div class="panel-heading bg-secondary bg-transparent p-0">
+                            <h4 class="closed">Создать заказ ({{ '9 10'|contitaps}})</h4>
+                            <!-- <i class="fa fa-2x fa-plus-circle pull-right"></i> -->
+                        </div>
+                        <div class="panel-body slimScrollDiv" style='display: none;'>
+                            <div id="closed" class="kanban-centered">
+                              {% for i in '9 10'|contitapslid %}
+                              <article class="kanban-entry grab" id="item6" draggable="true">
+                                  <div class="kanban-entry-inner">
+                                      <div class="kanban-label card bg-gradient-warning card-img-holder text-white h-100" data-toggle="modal" data-target="#leads-details">
+                                         <a href="{% url 'CRMmain:prod' pk=i.id %}" >  <h2 class="" data-toggle="modal" data-target="#leads">{{ i.title }}</h2></a>
+                                          
+                                            </li>
+                                          <ul class="list-unstyled">
+                                            <li> {{ i.kompani.title  }} </li>
+                                            <li>{{  i.get_status_display }}</li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </article>
+                            {% endfor %}
+                            </div>
+                        </div>
+                      
+                    </div>
+             
+                </div>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+        <!-- /Page Header -->
+     
+        <div class="row graphs">
+            <div class="col-md-6 "> 
+                <div class="card h-100">
+                  <div class="card-body">
+                      <h3 class="card-title">Общая информация по Запросам</h3>
+                     <canvas id="pie-chart" width="800" height="450"></canvas>
+                  </div>
+                </div>
+                
+            </div>
+            <div class="col-md-6 ">
+                
+              <div class="card h-100 ">
+                  <div class="card-body">
+                      <h3 class="card-title">Запросы по этапам </h3>
+                <canvas id="pie-chart2" width="800" height="450"></canvas>
+                  
+                  </div>
+              </div>
+          </div>
+           
+            
+            
+        </div>
+
+        <div class="row graphs">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Запросы по Менеджерам</h3>
+                        <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+        
+              <div class="card h-100">
+                  <div class="card-body">
+                      <h3 class="card-title"> Запросы по количествам продуктов  </h3>
+                    <canvas id="bar-chart" width="800" height="550"></canvas>
+                  </div>
+              </div>
+          </div>
+
+            
+        </div>
+        
+        <div class="row graphs">
+            
+
+            <div class="col-md-6">
+              <div class="card h-100">
+                  <div class="card-body">
+                      <h3 class="card-title"> Запросы по количеству прибыли </h3>
+                      <canvas id="mixed-chart" width="800" height="450"></canvas>
+                  </div>
+              </div>
+          </div>
+
+
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title"> Менеджеры по количеству просроченных задач </h3>
+                      <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+       
+
+{% endblock %}
+
+
+
+{% block page_staticjsandcss %}
+
+<!-- Chart JS -->
+<script src="{% static "assets/js/morris.js" %}"></script>
+		
+<script src="{% static "CRMmain/assets/plugins/raphael/raphael.min.js" %}"></script>
+<script src="{% static "CRMmain/assets/js/chart.js" %}"></script>
+<script src="{% static "CRMmain/assets/js/linebar.min.js" %}"></script>
+
+<script src="{% static "CRMmain/assets/js/apex.min.js" %}"></script>
+
+<!--
+<script src="{% static "CRMmain/assets/js/app.js" %}"></script>
+-->
+<script>
+  
+  if ($slimScrolls.length > 0) {
+        $slimScrolls.slimScroll({
+            height: 'auto',
+            width: '100%',
+            position: 'right',
+            size: '7px',
+            color: '#ccc',
+            wheelStep: 10,
+            touchScrollStep: 100
+        });
+        var wHeight = $(window).height() - 60;
+        $slimScrolls.height(wHeight);
+        $('.sidebar .slimScrollDiv').height(wHeight);
+        $(window).resize(function() {
+            var rHeight = $(window).height() - 60;
+            $slimScrolls.height(rHeight);
+            $('.sidebar .slimScrollDiv').height(rHeight);
+        });
+    }
+</script>
+
+<script>
+
+// Bar chart
+new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: {{ l|titleproj|safe}} ,
+      datasets: [
+        {
+          label: "Продуктов",
+          backgroundColor: [ "#9a55ff", '#000080',"#e8c3b9","#9a55ff" ],
+          data: {{ l|collofProd|safe}} ,
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Количество продуктов'
+      }
+    }
+});
+
+/*pie chart*/
+new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: ["В работе", "Приостановлен" ],
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: [ '#000080', '#DAA520'],
+        data: [ {{ 'ACT'|filtercount }} ,{{'RES'|filtercount}} ]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: ''
+      }
+    }
+});
+
+
+/*pie chart*/
+new Chart(document.getElementById("pie-chart2"), {
+    type: 'pie',
+    data: {
+      labels:['Проверка запроса','Оценка','Проверка КП','Заказ'] ,
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: [ "#9a55ff", '#000080',"#e8c3b9","#32CD32" ],
+        data: [ {{ '1 2 3'|contitaps }} ,{{ '4 5'|contitaps}} ,{{ '6 7 8'|contitaps}}, {{ '9 10'|contitaps}}]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: ''
+      }
+    }
+});
+
+/*grouped bar chart*/
+new Chart(document.getElementById("bar-chart-grouped"), {
+    type: 'bar',
+    data: {
+      labels: {{ l|fioprcount|safe }},
+      datasets: [
+        {
+          label: "В работе",
+          backgroundColor: '#000080',
+          data: {{ 'ACT'|countprodforFIO }}
+        }, {
+          label: "Приостановлено",
+          backgroundColor: '#DAA520',
+          data: {{ 'RES'|countprodforFIO }}
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: ''
+      }
+    }
+});
+
+/*mixed chart*/
+new Chart(document.getElementById("mixed-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Заказ 1", "Заказ  2", "Заказ  3", "Заказ  4"],
+      datasets: [{
+          label: "Completed",
+          type: "line",
+          borderColor: "#8e5ea2",
+          data: [408,547,675,734],
+          fill: false
+        }, {
+          label: "In progress",
+          type: "line",
+          borderColor: "#008000",
+          data: [133,221,783,2478],
+          fill: false
+        }, {
+          label: "completed",
+          type: "bar",
+          backgroundColor: "rgba(0,0,0,0.2)",
+          data: [408,547,675,734],
+        }, {
+          label: "Started",
+          type: "bar",
+          backgroundColor: "rgba(0,0,0,0.2)",
+          backgroundColorHover: '#000080',
+          data: [133,221,783,2478]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: ''
+      },
+      legend: { display: false }
+    }
+});
+
+/*horixzontal bar chart*/
+new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+      labels: {{ l|fioprcount|safe }} ,
+      datasets: [
+        {
+          label: "Products",
+          backgroundColor: ['#000080', "#9a55ff","#3cba9f","#e8c3b9","#9a55ff"],
+          data: {{f|countzadathamod|safe }}
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: ''
+      }
+    }
+});
+
+
+
+</script>
+{% endblock %}
+
+
+
