@@ -21,12 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x224t+!*#3e(xaxtg$+u*2gwp76vzy_m1n@qm@md=2$gd=((u='
+SECRET_KEY = 'x224t+!*#3e(xaxtg$sfsfwp76vzy_m1n@qm@md=2$gd=((u='
 
 # SECURITY WARNING: don't run with debug turned on in production!  True False
 DEBUG = True
 #
-ALLOWED_HOSTS = ['127.0.0.1','localhost','ru01-app47.galaktika.local','10.2.55.81' ]
+ALLOWED_HOSTS = ['127.0.0.1','localhost' ]
 
 ADMINS = [('MAXIM', 'makeev.21@mail.ru')]
 
@@ -52,10 +52,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'ru01-mail10.galaktika.local'
+EMAIL_HOST = 'galaktika.local'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'system.pmo'
-EMAIL_HOST_PASSWORD = 'LkL717*!'
+EMAIL_HOST_PASSWORD = 'dfdfdf*!'
 
 
 DEFAULT_FROM_EMAIL = 'Max Makeev'
