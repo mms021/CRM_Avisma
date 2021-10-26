@@ -2,5 +2,6 @@
 
 Django Project 
 
+Требуется загрузить Bootstrap3
 
 
